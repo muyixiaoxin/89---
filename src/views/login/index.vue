@@ -1,5 +1,7 @@
 <template>
-  <div>登录页面</div>
+<div class="login">
+<el-card class="card"></el-card>
+</div>
 </template>
 
 <script>
@@ -8,5 +10,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang='less' scoped >
+.login{
+    background-image: url(../../assets/img/login_bg.jpg);
+    background-size: cover;// cover:把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在背景定位区域中。
+    height: 100vh;
+    .card{
+        width: 440px;
+        height:350px;
+    }
+}
 </style>
