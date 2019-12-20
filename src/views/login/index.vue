@@ -8,8 +8,8 @@
       <!-- 登录 表单  表单容器 -->
       <el-form ref='myForm' style="margin-top:30px" :model="loginForm" :rules="loginRules">
         <!-- model前要加冒号.不加的话会默认值为字符串 -->
-        <el-form-item prop="mobele">
-          <el-input placeholder="请输入手机号" v-model="loginForm.mobele"></el-input>
+        <el-form-item prop="mobile">
+          <el-input placeholder="请输入手机号" v-model="loginForm.mobile"></el-input>
         </el-form-item>
         <el-form-item prop="code">
           <el-input placeholder="请输入验证码" style="width:65%" v-model="loginForm.code"></el-input>
@@ -33,20 +33,20 @@
 <script>
 
 export default {
-  //  定义一个表单数据对象.data里面 的参数是自定义 ,对应login输入框中的那几个数据
+  //  定义一个表单数据对象data;里面 的参数是自定义的 ,对应login输入框中的那几个数据
   data () {
     return {
-      loginForm: {
-        // 将这个对象通过:model属性绑定到使用的模块中;并通过:prop属性来指定这个对象中的属性分别用的地方
+      loginForm: { // 将这个对象通过 :model 属性绑定到使用的模块中(最外层的盒子);并通过 :prop 属性来指定这个对象中的属性分别用的地方(子标签)
+
         // 用v-model来双向绑定使用的标签
-        mobele: '', // 手机号
+        mobile: '', // 手机号
         code: '', // 验证码
-        check: false // 是否勾选
+        check: false // 是否勾选(默认false)
       },
       loginRules: {
-        // 验证登录表单的规则.通过rules属性绑定到使用的模块中
+        // 验证登录表单的规则.通过rules属性绑定到使用的模块中(整个表单)
         // key(需要校验的字段名):value(数组)
-        mobele: [
+        mobile: [
           { required: true, message: '请输入您的手机号' },
           { pattern: /^1[3456789]\d{9}$/, message: '手机号格式不正确' }
         ], // required为ture;为必填项
@@ -72,10 +72,22 @@ export default {
   methods: {
     submitLogin () {
       // el-form实例
-      this.$refs.myForm.validate(function (isok) {
+      this.$refs.myForm.validate((isok) => {
         if (isok) {
           // 校验 成功,
-          console.log('校验成功,请求后台中...')
+          this.$axios({
+            url: '/authorizations',
+            method: 'post', // 里面有两个参数,地址参数也叫查询参数,(放在params对象),body参数也叫请求体参数(放在data对象)
+            data: this.loginForm
+          }).then(result => {
+            window.localStorage.setItem('user-token', result.data.data.token)
+            this.$router.push('/')
+          }).catch(() => {
+            this.$message({
+              type: 'warning',
+              message: '请检查输入是否正确:   /(ㄒoㄒ)/~~'
+            })
+          })
         }
       })
     }
