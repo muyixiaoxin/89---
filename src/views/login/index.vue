@@ -6,7 +6,7 @@
         <img src="../../assets/img/logo_index.png" alt />
       </div>
       <!-- 登录 表单  表单容器 -->
-      <el-form style="margin-top:30px" :model="loginForm" :rules="loginRules">
+      <el-form ref='myForm' style="margin-top:30px" :model="loginForm" :rules="loginRules">
         <!-- model前要加冒号.不加的话会默认值为字符串 -->
         <el-form-item prop="mobele">
           <el-input placeholder="请输入手机号" v-model="loginForm.mobele"></el-input>
