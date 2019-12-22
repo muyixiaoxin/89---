@@ -1,6 +1,10 @@
 <template>
+<div class="layout-aside">
+    <div class="title">
+        <img src="../../assets/img/logo_admin.png" alt="">
+    </div>
   <!-- <div>左侧导航</div> -->
-  <el-menu>
+  <el-menu background-color="#353b4e" text-color="#fff" active-text-color="#ffd04b">
       <el-menu-item>首页</el-menu-item>
       <el-submenu>
           <template slot="title">
@@ -27,6 +31,7 @@
     <el-menu-item>账户信息</el-menu-item>
 
   </el-menu>
+  </div>
 </template>
 
 <script>
@@ -35,6 +40,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang='less' scoped>
+.layout-aside{
+    width: 231px;
+    .title{
+        text-align: center;
+        background-color: #2e2f32;
+        padding: 15px;
+        img{
+            height: 35px;
+        }
+    }
+}
 
 </style>
