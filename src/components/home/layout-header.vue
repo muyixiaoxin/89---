@@ -30,6 +30,7 @@ export default {
   data () {
     return {
       userInfo: {}, // 空对象用来接收 用户数据
+
       defaultImg: require('../../assets/img/avatar.jpg')
     }
   },
@@ -45,13 +46,9 @@ export default {
     }
   },
   created () {
-    const token = window.localStorage.getItem('user-token') // 获取令牌
     // 查询数据.要有axios
     this.$axios({
-      url: '/user/profile',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      url: '/user/profile'
     }).then(result => {
       console.log(result)
 

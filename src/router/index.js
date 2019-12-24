@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/home'
 import Login from '../views/login'
+import home2 from '../views/home/home'// 默认背景
 Vue.use(VueRouter)
 
 const routes = [{
@@ -10,7 +11,11 @@ const routes = [{
 }, {
   path: '/home',
   name: 'home',
-  component: Home
+  component: Home,
+  children: [{
+    path: '',
+    component: home2
+  }]
 },
 {
   path: '/login',
