@@ -80,7 +80,7 @@ export default {
             method: 'post', // 里面有两个参数,地址参数也叫查询参数,(放在params对象),body参数也叫请求体参数(放在data对象)
             data: this.loginForm
           }).then(result => {
-            window.localStorage.setItem('user-token', result.data.data.token)
+            window.localStorage.setItem('user-token', result.data.token)
             this.$router.push('/')
           }).catch(() => {
             this.$message({

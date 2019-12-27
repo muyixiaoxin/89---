@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home'
 import Login from '../views/login'
 import home2 from '../views/home/home'// 默认背景
+import Commont from '../views/comment'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -15,6 +16,9 @@ const routes = [{
   children: [{
     path: '',
     component: home2
+  }, {
+    path: '/home/comment',
+    component: Commont
   }]
 },
 {

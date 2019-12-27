@@ -52,7 +52,7 @@ export default {
     }).then(result => {
       console.log(result)
 
-      this.userInfo = result.data.data// 获取到了返回的信息
+      this.userInfo = result.data// 获取到了返回的信息
     })
   }
 }
